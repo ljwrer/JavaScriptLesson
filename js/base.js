@@ -1,6 +1,6 @@
-function print(value){
+var print=function (value){
 	document.write(value);
 }
-function println(value){
+var println=function (value){
 	print(value+"<br/>");
 }

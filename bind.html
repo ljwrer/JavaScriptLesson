@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="js/base.js"></script>
+		<script>
+			 //			var aArgs = Array.prototype.slice.call(arguments, 1),
+			 //				fToBind = this,
+			 //				fNOP = function() {},
+			 //				fBound = function() {
+			 //					return fToBind.apply(this instanceof fNOP & amp; & amp; oThis ? this :oThis,aArgs.concat(Array.prototype.slice.call(arguments)));
+			 //				};
+			 //			fNOP.prototype = this.prototype;
+			 //			fBound.prototype = new fNOP();
+			 //			return fBound;
+			 //			};
+			 //			Function.prototype.bind=function(){
+			 //				var aArgs = Array.prototype.slice.call(arguments, 1);
+			 //			}
+			 //			var func = new function() {
+			 //				this.a = "func";
+			 //			}
+			 //			var myfunc = function(x, y) {
+			 //				var a = "myfunc";
+			 //				alert(this.a);
+			 //				alert(x + y);
+			 //			}
+			 //			myfunc.call(func, "var", "fun"); // "func" "var fun"
+			 //			myfunc.apply(func, ["var", "fun"]); // "func" "var fun"
+			 //			function CallLevel() {
+			 //				if (CallLevel.caller == null) {
+			 //					alert("CallLevel was called from the top level.");
+			 //				} else {
+			 //					alert("CallLevel was called by another function:\n" + CallLevel.caller);
+			 //				}
+			 //			}
+			 //
+			 //			function funCaller() {
+			 //				CallLevel();
+			 //			}
+			 //			CallLevel();
+			 //			funCaller();
+			 // callee可以打印其本身
+			function calleeDemo() {
+					alert(arguments.callee);
+				}
+				// 用于验证参数
+				//			function calleeLengthDemo(arg1, arg2) {
+				//					if (arguments.length == arguments.callee.length) {
+				//						window.alert("验证形参和实参长度正确！");
+				//						return;
+				//					} else {
+				//						alert("实参长度：" + arguments.length);
+				//						alert("形参长度： " + arguments.callee.length);
+				//					}
+				//				}
+				//				//递归计算
+				//			var sum = function(n) {
+				//				if (n <= 1) {
+				//					return 1;
+				//				} else {
+				//					return n + arguments.callee(n - 1);
+				//				}
+				//			}
+				//			println(sum(3));
+			var first_object = {
+				num: 42
+			};
+			var second_object = {
+				num: 24
+			};
+
+			function multiply(mult) {
+				return this.num * mult;
+			}
+//			Function.prototype.bind = function(obj) {
+//				var method = this,
+//					temp = function() {
+//						return method.apply(obj, arguments);
+//					};
+//				return temp;
+//			}
+			Function.prototype.bind=function(obj){
+				var method=this;
+				return function(){return method.apply(obj,arguments);}
+			}
+			var first_multiply = multiply.bind(first_object);
+		println(first_multiply(5)); // returns 42 * 5
+			var second_multiply = multiply.bind(second_object);
+			println(second_multiply(5)); // returns 24 * 5
+			var move=function(x,y){
+				this.x+=x;
+				this.y+=y;
+			}
+			var point=function(x,y){
+				this.x=x;
+				this.y=y;
+			}
+			var p=new point(1,2);
+			var pointmove=move.bind(p);
+			pointmove(2,3);
+			println(p.x);
+			println(p.y); 
+		</script>
+	</head>
+
+	<body>
+
+	</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="js/base.js"></script>
+	</head>
+
+	<body>
+		<script>
+			 //			var idx = search(arr, dst);
+			 //var search=function(arr,dst){
+			 //	var i=0;
+			 //	var len=arr.length;
+			 //	var result=-1;
+			 //	for(;i<len;i++)
+			 //	{
+			 //		if(arr[i]===dst)
+			 //		{
+			 //			result=i;
+			 //			break;
+			 //		}
+			 //	}
+			 //	return result;
+			 //}
+var search = function(arr, dst) {
+	var startIndex = 0,
+		stopIndex = arr.length - 1,
+		middle = Math.floor((stopIndex + startIndex) / 2);
+	while (arr[middle] != dst && startIndex < stopIndex) {
+		if (dst < arr[middle]) {
+			stopIndex = middle - 1;
+		} else if (dst > arr[middle]) {
+			startIndex = middle + 1;
+		}
+		middle = Math.floor((stopIndex + startIndex) / 2);
+	}
+	return (arr[middle] != dst) ? -1 : middle;
+};
+var arr = [1, 2, 4, 6, 7, 9, 19, 20, 30, 40, 45, 47];
+var idx = search(arr, 45);
+println(idx);
+		</script>
+	</body>
+
+</html>

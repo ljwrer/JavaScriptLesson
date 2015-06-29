@@ -84,7 +84,7 @@
 //			}
 			Function.prototype.bind=function(obj){
 				var method=this;
-				return function(){return method.apply(obj,arguments);}
+				return function(){return method.apply(obj,arguments)};
 			}
 			var first_multiply = multiply.bind(first_object);
 		println(first_multiply(5)); // returns 42 * 5

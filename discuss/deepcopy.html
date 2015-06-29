@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript" src="../js/base.js"></script>
+		<script>
+			var deepCopy = function(obj) {
+				var out = new Object();
+				for (var name in obj) {
+					if (typeof obj[name] === "object") {
+						out[name] = deepCopy(arguments.callee(obj[name]));
+					} else {
+						out[name] = obj[name];
+					}
+				}
+				return out;
+			}
+		</script>
+	</body>
+
+</html>

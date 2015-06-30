@@ -8,19 +8,19 @@
 		<script type="text/javascript" src="js/base.js" ></script>
 		<script>
 			var add=function(x){
-				var helper=function(x,y){
-					var f=
-					f.toString=function(){
-						return ""+sum;
-					}
-					f.valueOf=function(){
-						return sum;
-					}
+				var sum=x;
+				var f=function(y){
+					sum+=y;
 					return f;
-				
-				return helper(x,0);
+				};
+				f.toString=function(){
+					return ""+sum;
+				};
+				f.valueOf=function(){
+					return sum;
+				};
+				return f;
 			};
-			add(10)(20);
 		</script>
 	</body>
 </html>
